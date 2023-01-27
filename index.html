@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Auth redirect pages</title>
+  </head>
+  <body>
+    <h1>Auth redirect pages</h1>
+    <p>
+      Domain prefix: <input type="text" id="domain_prefix" /><br/>
+      Region: <input type="text" id="region" value="eu-west-2" /><br/>
+      Client id: <input type="text" id="client_id" /><br/>
+      Redirect uri: <input type="text" id="redirect_uri" />
+    </p>
+    <p>
+        <input type="button" onclick="do_login"  value="Log in"  /><br/>
+        <input type="button" onclick="do_logout" value="Log out" /><br/>
+    </p>
+
+    <script>
+    function do_login() {
+      var domain_prefix = document.getElementById("domain_prefix").value;
+      var region        = document.getElementById("region").value;
+      var client_id     = document.getElementById("client_id").value;
+      var redirect_uri  = document.getElementById("redirect_uri").value;
+
+      var new_uri = `https://${domain_prefix}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`
+      window.location.href = new_uri;
+    }
+
+    function do_logout() {
+      var domain_prefix = document.getElementById("domain_prefix").value;
+      var region        = document.getElementById("region").value;
+      var client_id     = document.getElementById("client_id").value;
+      var redirect_uri  = document.getElementById("redirect_uri").value;
+      
+      var new_uri = `https://${domain_prefix}.auth.${region}.amazoncognito.com/logout?response_type=code&client_id=${client_id}&logout_uri=${redirect_uri}`
+      window.location.href = new_uri;
+    }
+    </script>
+
+  </body>
+</html>
