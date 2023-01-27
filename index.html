@@ -4,6 +4,7 @@
   </head>
   <body>
     <h1>Auth redirect pages</h1>
+    <form id="auth_values" autocomplete="on">
     <p>
       Domain prefix: <input type="text" id="domain_prefix" /><br/>
       Region: <input type="text" id="region" value="eu-west-2" /><br/>
@@ -14,7 +15,7 @@
         <input type="button" onclick="do_login()"  value="Log in"  /><br/>
         <input type="button" onclick="do_logout()" value="Log out" /><br/>
     </p>
-
+    </form>
     <script>
     function do_login() {
       var domain_prefix = document.getElementById("domain_prefix").value;
