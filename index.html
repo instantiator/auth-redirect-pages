@@ -17,6 +17,15 @@
     </p>
     </form>
     <script>
+    let params = new URL(window.location).searchParams;
+
+    function init() {
+      document.getElementById("domain_prefix").value = params.get('domain_prefix') ?? '';
+      document.getElementById("region").value = params.get('region') ?? 'eu-west-2';
+      document.getElementById("client_id").value = params.get('client_id') ?? '';
+      document.getElementById("redirect_uri").value = params.get('redirect_uri') ?? '';
+    }
+
     function do_login() {
       var domain_prefix = document.getElementById("domain_prefix").value;
       var region        = document.getElementById("region").value;
@@ -36,6 +45,8 @@
       var new_uri = `https://${domain_prefix}.auth.${region}.amazoncognito.com/logout?response_type=code&client_id=${client_id}&logout_uri=${redirect_uri}`
       window.location.href = new_uri;
     }
+
+    init();
     </script>
 
   </body>
