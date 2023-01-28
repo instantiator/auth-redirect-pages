@@ -4,5 +4,48 @@
     </head>
     <body>
         <h1>Logged in</h1>
+
+        <h2>Code</h2>
+
+        <p>
+            Requests that set response_type to <b>code</b> will receive a code which can be
+            exchanged for the user's id and access tokens at the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html">token endpoint</a>.
+        </p>
+
+        <p>
+            Code: <pre style="background-color: #dddddd; padding: 5px;" id="code_value"></pre><br/>
+            <input type="button" onclick="copyCode()" value="Copy code to clipboard" />
+        </p>
+
+        <h2>Tokens</h2>
+
+        <p>
+            Requests that set response_type to <b>token</b> will receive the user's id and access tokens directly.
+            This is called an <i>implicit grant</i>.
+        </p>
+
+        <p>
+            Id token: <pre style="background-color: #dddddd; padding: 5px;" id="id_token_value"></pre><br/>
+            Access token: <pre style="background-color: #dddddd; padding: 5px;" id="access_token_value"></pre><br/>
+            <input type="button" onclick="copyIdToken()" value="Copy id token to clipboard" />
+            <input type="button" onclick="copyAccessToken()" value="Copy access token to clipboard" />
+        </p>
+
+        <script>
+        let params = new URL(window.location).searchParams;
+
+        var code = params.get('code');
+        document.getElementById('code_value').innerHTML = code;
+
+        var id_token = params.get('id_token');
+        var access_token = params.get('access_token');
+        document.getElementById('id_token_value').innerHTML = id_token;
+        document.getElementById('access_token_value').innerHTML = access_token;
+
+        function copyCode() { navigator.clipboard.writeText(code); }
+        function copyIdToken() { navigator.clipboard.writeText(id_token); }
+        function copyAccessToken() { navigator.clipboard.writeText(access_token); }
+        </script>
+
     </body>
 </html>
