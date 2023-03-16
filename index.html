@@ -1,21 +1,56 @@
 <html>
   <head>
     <title>Auth redirect pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Auth redirect pages</h1>
-    <form id="auth_values" autocomplete="on">
-    <p>
-      Domain prefix: <input type="text" id="domain_prefix" /><br/>
-      Region: <input type="text" id="region" value="eu-west-2" /><br/>
-      Client id: <input type="text" id="client_id" /><br/>
-      Redirect uri: <input type="text" id="redirect_uri" />
-    </p>
-    <p>
-        <input type="button" onclick="do_login()"  value="Log in"  /><br/>
-        <input type="button" onclick="do_logout()" value="Log out" /><br/>
-    </p>
-    </form>
+
+    <div id="layout" class="pure-g">
+      <div class="content pure-u-1">
+
+        <h1>Auth redirect pages</h1>
+        <form id="auth_values" autocomplete="on">
+          <table class="pure-table pure-table-horizontal">
+            <tr>
+              <td>Domain prefix</td>
+              <td><input type="text" id="domain_prefix" /></td>
+              <td>This is the subdomain of your Cognito URLs (see the outputs from your stack). By default it's your stack name.</td>
+            </tr>
+
+            <tr>
+              <td>Region</td>
+              <td><input type="text" id="region" value="eu-west-2" /></td>
+              <td>This is AWS region you have deployed to. Leave as <code>eu-west-2</code> unless you've changed this in your template or deployment.</td>
+            </tr>
+
+            <tr>
+              <td>Client id</td>
+              <td><input type="text" id="client_id" /></td>
+              <td>This is your Cognito User Pool Client id (see the outputs from your stack).</td>
+            </tr>
+
+            <tr>
+              <td>Redirect uri</td>
+              <td><input type="text" id="redirect_uri" value="https://instantiator.dev/auth-redirect-pages/logged_in.html" /></td>
+              <td>
+                This is URL to redirect to on authentication.
+                Leave as the link to <a href="https://instantiator.dev/auth-redirect-pages/logged_in.html">logged_in.html</a> unless you've changed this in your template or deployment.
+              </td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div class="pure-u-1">
+          <input type="button" class="pure-button pure-button-primary" onclick="do_login()"  value="Log in"  />
+          <input type="button" class="pure-button" onclick="do_logout()" value="Log out" />
+        </div>
+
+      </form>
+    </div>
+
     <script>
     let params = new URL(window.location).searchParams;
 
