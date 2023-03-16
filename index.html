@@ -21,7 +21,7 @@
 
             <tr>
               <td>Region</td>
-              <td><input type="text" id="region" value="eu-west-2" /></td>
+              <td><input type="text" id="region" /></td>
               <td>This is AWS region you have deployed to. Leave as <code>eu-west-2</code> unless you've changed this in your template or deployment.</td>
             </tr>
 
@@ -33,7 +33,7 @@
 
             <tr>
               <td>Redirect uri</td>
-              <td><input type="text" id="redirect_uri" value="https://instantiator.dev/auth-redirect-pages/logged_in.html" /></td>
+              <td><input type="text" id="redirect_uri" /></td>
               <td>
                 This is URL to redirect to on authentication.
                 Leave as the link to <a href="https://instantiator.dev/auth-redirect-pages/logged_in.html">logged_in.html</a> unless you've changed this in your template or deployment.
@@ -58,7 +58,7 @@
       document.getElementById("domain_prefix").value = params.get('domain_prefix') ?? '';
       document.getElementById("region").value = params.get('region') ?? 'eu-west-2';
       document.getElementById("client_id").value = params.get('client_id') ?? '';
-      document.getElementById("redirect_uri").value = params.get('redirect_uri') ?? '';
+      document.getElementById("redirect_uri").value = params.get('redirect_uri') ?? 'https://instantiator.dev/auth-redirect-pages/logged_in.html';
     }
 
     function do_login() {
